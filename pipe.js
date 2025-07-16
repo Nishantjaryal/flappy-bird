@@ -1,12 +1,14 @@
-const Hole_Height = 100;
+const Hole_Height = 150;
 const pipe_make_interval = 1500;
 let pipes = [];
-const pipe_speed = 0.75
-const pipe_width =100;
+const pipe_speed = 0.70
+const pipe_width =75;
 let timeSinceLastPipe = 0;
 let passedPipeCount = 0;
 
 const subtitle = document.querySelector("[data-subtitle]")
+const subtitle2 = document.querySelector("[data-subtitle2]")
+
 
 export function getPipeRects() {
     return pipes.flatMap(pipe => pipe.rects())
@@ -22,8 +24,11 @@ export function updatePipe(delta){
     pipes.forEach(pipe => {
         if(pipe.left+pipe_width<0){
             passedPipeCount++;
+            let prev_high = localStorage.getItem("pipe-count");
+            localStorage.setItem("pipe-count",Math.max(prev_high,passedPipeCount));
             console.log(passedPipeCount)
-            subtitle.textContent = `${passedPipeCount} pipes`
+            subtitle.textContent = `pipes: ${passedPipeCount} `
+            subtitle2.textContent = `Highest: ${localStorage.getItem("pipe-count")} `
             return pipe.remove();
 
         }
@@ -33,6 +38,7 @@ export function updatePipe(delta){
 
 export function resetScore() {
     passedPipeCount = 0;
+    subtitle.textContent = "";
     pipes.forEach(pipe => pipe.remove())
 }
 

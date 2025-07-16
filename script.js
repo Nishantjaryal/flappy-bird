@@ -1,8 +1,10 @@
 import { updateBird, setupBird, getBirdRect } from "./bird.js"
 import { updatePipe,resetScore, getPipeRects } from "./pipe.js";
+
 document.addEventListener("keypress", handleStart, { once: true })
 const title = document.querySelector("[data-title]")
 const subtitle = document.querySelector("[data-subtitle]")
+const subtitle2 = document.querySelector("[data-subtitle2]")
 
 let lastTime;
 function updateLoop(time) {
@@ -37,6 +39,7 @@ function handleLose() {
     setTimeout(() => {
         title.classList.remove("hide");
         subtitle.classList.remove("hide");
+        subtitle2.classList.remove("hide");
         document.addEventListener("keypress", handleStart, { once: true }) 
     }, 100)
 

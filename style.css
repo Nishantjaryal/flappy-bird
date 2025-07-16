@@ -1,73 +1,144 @@
-*, *::after, *::before{
-    box-sizing: border-box;
-    font-family: monospace;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  font-family: monospace;
+
 }
 
-body{
-    margin: 0;
-    overflow: hidden;
-    height: 100vh;
-    position: relative;
+body {
+  margin: 0;
+  overflow: hidden;
+  height: 100vh;
+  position: relative;
+  background-image: url("/images/background1.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  width: 100%;
 }
 
-.title{
-    
-    z-index:10; 
-    position:absolute;
+.title {
+  z-index: 10;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  inset: 0;
+  margin: 0;
+  flex-direction: column;
+  transition: 0.2s;
+}
+
+.subtitle {
+  margin-top: 0.5rem;
+}
+
+.hide {
+  display: none;
+}
+
+.bird {
+  --bird-top: 60; /* Replace with a sensible value */
+  --bird-size: 60px;
+
+  position: absolute;
+  width: var(--bird-size);
+  height: var(--bird-size);
+
+  background-image: url("/images/bird.png");
+  background-position: center;
+  background-size: var(--bird-size);
+  background-repeat: no-repeat;
+
+  /* border-radius: 50%; */
+  left: var(--bird-size);
+  top: calc(var(--bird-top) * 1px);
+}
+
+.pipe {
+  --pipe-width: 85;
+  --pipe-left: 100;
+  --hole-top: 100;
+  --hole-height: 250;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc(var(--pipe-width) * 1px);
+  left: calc(var(--pipe-left) * 1px);
+}
+
+.pipe > .segment {
+  position: absolute;
+  width: 100%;
+  background-color: rgb(124, 124, 240);
+  background-image: url("/images/wall.jpeg");
+  background-position: center;
+  background-size: 500%;
+  background-repeat: no-repeat;
+}
+
+.pipe > .top {
+  top: 0;
+  bottom: calc(var(--hole-top) * 1px);
+}
+.pipe > .bottom {
+  bottom: 0;
+  top: calc(100vh - (var(--hole-top) * 1px) + calc(var(--hole-height) * 1px));
+}
+
+/* .trigger-cont{
     display: flex;
-    justify-content: center;
+    background: transparent;
     align-items: center;
-    inset: 0;
-    margin: 0;
-    flex-direction: column;
+    justify-content: center;
+        position: absolute;
+        width: 100%;
+    bottom: 20px;
 }
 
-.subtitle{
-    margin-top: .5rem;
+.trigger-cont > .trigger{
+        padding: 10px 15px;
+    z-index: 20;
+    background-color: rgb(226, 225, 223);
+    border: 1px solid brown ;
 
+    border-radius: 5px;
+    text-transform: capitalize;
+    color: brown;
+} */
+
+.pc {
+  display: none;
+  width: 100%;
+}
+.phn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+    height: 100VH;
 }
 
-.hide{
+.phn img{
+    width: 50%;
+    max-width: 300px;
+}
+.phn h1{
+    background-color: bisque;
+    color: black;
+    padding: 5px 10px;
+    width:80% ;
+    min-width: 300px;
+}
+
+@media (min-width: 1000px) {
+  .phn {
     display: none;
-}
+  }
 
-.bird{
-    --bird-top: 1111111111;
-    --bird-size: 45px;
-    position: absolute;
-    background-color: yellow;
-    width: var(--bird-size);
-    height: var(--bird-size);
-    left: var(--bird-size);
-    border-radius: 50%;
-    top: calc(var(--bird-top)*1px);
-}
-
-
-.pipe{
-    --pipe-width:100;
-    --pipe-left:100;
-    --hole-top:100;
-    --hole-height:150;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: calc(var(--pipe-width)*1px);
-    left: calc(var(--pipe-left)*1px);
-
-}
-
-.pipe > .segment{
-    position: absolute;
-    width: 100%;
-    background-color: blue;
-}
-
-.pipe > .top{
-    top:0;
-    bottom:calc(var(--hole-top)*1px);
-}
-.pipe > .bottom{
-    bottom: 0;
-    top: calc(100vh - (var(--hole-top) * 1px) + calc(var(--hole-height) * 1px));
+  .pc {
+    display: block;
+  }
 }

@@ -38,7 +38,7 @@ function getTop(){
 )}
 
 function handleJump(e) {    
-    if(e.code !== "Space") return
+    // if(e.code !== "Space") return
     timeSinceLastJump = 0;
     
 }
